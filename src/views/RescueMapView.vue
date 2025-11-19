@@ -45,7 +45,9 @@ async function loadVictimsOnce() {
   try {
     const q = query(collection(db, 'victims'), orderBy('createdAt', 'desc'));
     const snap = await getDocs(q);
-    victims.value = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    victims.value = snap.docs
+      .map(d => ({ id: d.id, ...d.data() }))
+      .filter(v => v.status !== 1); // chỉ show status khác 1
   } catch (e) {
     error.value = e.message || 'Không tải được dữ liệu';
   } finally {
