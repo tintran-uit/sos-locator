@@ -35,13 +35,10 @@ header h1 {
 }
 nav {
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  flex-wrap: wrap;
   gap: 0.5rem;
   width: 100%;
-  scrollbar-width: none;
 }
-nav::-webkit-scrollbar { display: none; }
 nav a {
   color: #fff;
   background: rgba(255,255,255,0.08);
@@ -51,6 +48,8 @@ nav a {
   text-decoration: none;
   white-space: nowrap;
   transition: background 0.2s;
+  flex: 1 0 120px;
+  text-align: center;
 }
 nav a.router-link-active {
   font-weight: 600;
@@ -66,9 +65,14 @@ main { padding: 1.25rem; }
   header h1 {
     font-size: 1.05rem;
   }
+  nav {
+    gap: 0.25rem;
+  }
   nav a {
-    font-size: 0.98em;
-    padding: 0.45em 0.8em;
+    font-size: 1.05em;
+    padding: 0.55em 0.7em;
+    min-width: 110px;
+    flex: 1 0 110px;
   }
   main { padding: 0.7rem 0.2rem; }
 }
