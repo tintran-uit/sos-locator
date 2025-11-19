@@ -5,6 +5,7 @@
       <nav>
         <RouterLink to="/report">Gửi tín hiệu cứu nạn</RouterLink>
         <RouterLink to="/rescue">Bản đồ cứu hộ</RouterLink>
+        <RouterLink to="/hotline">Số điện thoại cứu hộ</RouterLink>
       </nav>
     </header>
     <main>
