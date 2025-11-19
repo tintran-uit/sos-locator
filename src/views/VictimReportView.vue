@@ -16,7 +16,7 @@
       <button type="submit" :disabled="submitting || lat == null">{{ submitting ? 'Đang gửi...' : 'Gửi tín hiệu' }}</button>
     </form>
     <p v-if="error" class="error">Lỗi: {{ error }}</p>
-    <p v-if="success" class="success">Đã gửi thành công! Hãy giữ an toàn. Trong thời gian chờ đợi hãy cố gắng liên lạc thêm các đội cứu hộ khác để được giúp nhanh chóng hơn!</p>
+    <p v-if="success" class="success">Đã gửi thành công! Hãy giữ an toàn. Trong thời gian chờ đợi hãy cố gắng liên lạc thêm các đội cứu hộ gần nhất để được giúp nhanh chóng hơn!</p>
   </section>
 </template>
 
