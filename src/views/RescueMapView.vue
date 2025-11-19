@@ -18,7 +18,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { Loader } from '@googlemaps/js-api-loader';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../services/firebase';
 
 const victims = ref([]);
@@ -29,13 +29,48 @@ let map; let markers = [];
 
 function formatLoc(loc) { return loc && typeof loc.lat === 'number' && typeof loc.lng === 'number' ? `${loc.lat.toFixed(5)}, ${loc.lng.toFixed(5)}` : 'N/A'; }
 function clearMarkers() { markers.forEach(m => m.setMap(null)); markers = []; }
+async function handleUpdateStatus(id, status) {
+  try {
+    await updateDoc(doc(db, 'victims', id), { status });
+    await loadVictimsOnce();
+  } catch (e) {
+    alert('Cập nhật thất bại: ' + (e.message || e));
+  }
+}
+
 function renderMarkers() {
   if (!map) return;
   clearMarkers();
   victims.value.forEach(v => {
     if (!v.location || typeof v.location.lat !== 'number' || typeof v.location.lng !== 'number') return;
     const marker = new google.maps.Marker({ position: v.location, map, title: `${v.name} (${v.phone})` });
-    const infowindow = new google.maps.InfoWindow({ content: `<strong>${v.name}</strong><br/>${v.phone}<br/>${formatLoc(v.location)}` });
+    // Custom popup content with action buttons
+    const content = document.createElement('div');
+    content.innerHTML = `<strong>${v.name}</strong><br/>${v.phone}<br/>${formatLoc(v.location)}`;
+    const btn1 = document.createElement('button');
+    btn1.textContent = 'Đã hỗ trợ';
+    btn1.style.margin = '6px 6px 0 0';
+    btn1.style.background = '#2e7d32';
+    btn1.style.color = '#fff';
+    btn1.style.border = 'none';
+    btn1.style.borderRadius = '4px';
+    btn1.style.padding = '0.3em 0.8em';
+    btn1.style.cursor = 'pointer';
+    btn1.onclick = () => { handleUpdateStatus(v.id, 1); };
+    const btn2 = document.createElement('button');
+    btn2.textContent = 'Thông tin sai';
+    btn2.style.margin = '6px 0 0 0';
+    btn2.style.background = '#c62828';
+    btn2.style.color = '#fff';
+    btn2.style.border = 'none';
+    btn2.style.borderRadius = '4px';
+    btn2.style.padding = '0.3em 0.8em';
+    btn2.style.cursor = 'pointer';
+    btn2.onclick = () => { handleUpdateStatus(v.id, 0); };
+    content.appendChild(document.createElement('br'));
+    content.appendChild(btn1);
+    content.appendChild(btn2);
+    const infowindow = new google.maps.InfoWindow({ content });
     marker.addListener('click', () => infowindow.open({ anchor: marker, map }));
     markers.push(marker);
   });
