@@ -13,11 +13,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
-export async function submitVictim({ name, phone, lat, lng }) {
-	if (!name || !phone || lat == null || lng == null) throw new Error('Thiếu dữ liệu');
-	return addDoc(collection(db, 'victims'), {
-		name, phone, location: { lat, lng }, createdAt: serverTimestamp()
-	});
+export async function submitVictim({ name, phone, address, lat, lng }) {
+	if (!name || !phone) throw new Error('Thiếu dữ liệu');
+	// Cho phép lat/lng null, address có thể rỗng
+	const data = {
+		name,
+		phone,
+		address: address || '',
+		location: (lat != null && lng != null) ? { lat, lng } : null,
+		createdAt: serverTimestamp()
+	};
+	return addDoc(collection(db, 'victims'), data);
 }
 
 export function listenVictims(callback) {
