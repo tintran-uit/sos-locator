@@ -3,14 +3,21 @@
     <h2>Bản đồ cứu hộ</h2>
     <div ref="mapEl" class="map"></div>
     <div class="list">
-      <h3>Danh sách tín hiệu ({{ victims.length }})</h3>
+      <button class="refresh" @click="loadVictimsOnce" :disabled="loading">{{ loading ? 'Đang tải...' : 'Tải lại' }}</button>
+      <p><b>Đã hỗ trợ: {{ victims.filter(v => v.status === 1).length }}</b></p>
+      <!-- <ul>
+        <li v-for="v in victims.filter(v => v.status === 1)" :key="v.id">
+          {{ v.name }} ({{ v.phone }}) - {{ formatLoc(v.location) }}
+        </li>
+        <li v-if="!victims.some(v => v.status === 1)" class="empty">Chưa có ai được hỗ trợ.</li>
+      </ul> -->
+  <h3 class="highlight-red">Danh sách tín hiệu chưa được hỗ trợ:({{ victims.filter(v => v.status !== 1).length }})</h3>
       <p v-if="loading">Đang tải dữ liệu...</p>
       <p v-else-if="error" class="error">Lỗi: {{ error }}</p>
       <ul v-else>
-        <li v-for="v in victims" :key="v.id">{{ v.name }} ({{ v.phone }}) - {{ formatLoc(v.location) }}</li>
-        <li v-if="!victims.length" class="empty">Chưa có tín hiệu nào.</li>
+        <li v-for="v in victims.filter(v => v.status !== 1)" :key="v.id">{{ v.name }} ({{ v.phone }}) - {{ formatLoc(v.location) }} - {{v.address}}</li>
+        <li v-if="!victims.some(v => v.status !== 1)" class="empty">Chưa có tín hiệu nào.</li>
       </ul>
-      <button class="refresh" @click="loadVictimsOnce" :disabled="loading">{{ loading ? 'Đang tải...' : 'Tải lại' }}</button>
     </div>
   </section>
 </template>
@@ -81,8 +88,7 @@ async function loadVictimsOnce() {
     const q = query(collection(db, 'victims'), orderBy('createdAt', 'desc'));
     const snap = await getDocs(q);
     victims.value = snap.docs
-      .map(d => ({ id: d.id, ...d.data() }))
-      .filter(v => v.status !== 1); // chỉ show status khác 1
+      .map(d => ({ id: d.id, ...d.data() })); // chỉ show status khác 1
   } catch (e) {
     error.value = e.message || 'Không tải được dữ liệu';
   } finally {
@@ -114,5 +120,6 @@ ul { list-style:none; padding:0; margin:0; }
 li { padding:0.35rem 0; border-bottom:1px solid #e0e0e0; font-size:0.9rem; }
 li:last-child { border-bottom:none; }
 .error { color:#c62828; font-size:0.85rem; }
+.highlight-red { color: #c62828; }
 .empty { color:#666; font-size:0.85rem; font-style:italic; }
 </style>
