@@ -48,9 +48,19 @@ async function handleUpdateStatus(id, status) {
 function renderMarkers() {
   if (!map) return;
   clearMarkers();
+  const sosIcon = {
+    url: '/icons/sos.png', // Icon nội bộ lưu trong public/icons/sos.png
+    scaledSize: new google.maps.Size(38, 38),
+    anchor: new google.maps.Point(19, 38)
+  };
   victims.value.forEach(v => {
     if (!v.location || typeof v.location.lat !== 'number' || typeof v.location.lng !== 'number') return;
-    const marker = new google.maps.Marker({ position: v.location, map, title: `${v.name} (${v.phone})` });
+    const marker = new google.maps.Marker({ 
+      position: v.location, 
+      map, 
+      title: `${v.name} (${v.phone})`,
+      icon: sosIcon
+    });
     // Custom popup content with action buttons
     const content = document.createElement('div');
     content.innerHTML = `<strong>${v.name}</strong><br/>${v.phone}<br/>${formatLoc(v.location)}`;
