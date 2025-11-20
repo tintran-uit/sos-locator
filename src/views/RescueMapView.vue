@@ -15,7 +15,12 @@
       <p v-if="loading">Đang tải dữ liệu...</p>
       <p v-else-if="error" class="error">Lỗi: {{ error }}</p>
       <ul v-else>
-        <li v-for="v in victims.filter(v => v.status !== 1)" :key="v.id">{{ v.name }} ({{ v.phone }}) - {{ formatLoc(v.location) }} - {{v.address}}</li>
+        <li v-for="v in victims.filter(v => v.status !== 1)" :key="v.id">
+          {{ v.name }}
+          (<a :href="'tel:' + v.phone.replace(/[^0-9+]/g, '')" style="color:#006494; text-decoration:underline">{{ v.phone }}</a>)
+          - {{ formatLoc(v.location) }}
+          <span v-if="v.address">- {{ v.address }}</span>
+        </li>
         <li v-if="!victims.some(v => v.status !== 1)" class="empty">Chưa có tín hiệu nào.</li>
       </ul>
     </div>
@@ -63,7 +68,7 @@ function renderMarkers() {
     });
     // Custom popup content with action buttons
     const content = document.createElement('div');
-    content.innerHTML = `<strong>${v.name}</strong><br/>${v.phone}<br/>${formatLoc(v.location)}`;
+  content.innerHTML = `<strong>${v.name}</strong><br/><a href='tel:${v.phone.replace(/[^0-9+]/g, '')}' style='color:#006494;text-decoration:underline'>${v.phone}</a><br/>${formatLoc(v.location)}`;
     const btn1 = document.createElement('button');
     btn1.textContent = 'Đã hỗ trợ';
     btn1.style.margin = '6px 6px 0 0';
