@@ -5,19 +5,19 @@
       <div class="province">
         <h3>Gia Lai - Bình Định (cũ))</h3>
         <ul>
-          <li>Cảnh sát PCCC: <b>114</b></li>
-          <li>0914 907 576: Cano khu vực Long Vân - Hùng Vương</li>
-          <li>086 777 2726: anh Tâm Kỳ Co</li>
-          <li>0345 661 088: anh Hiệp HDV</li>
-          <li>0387 234 577: anh Đảo Nhơn Lý</li>
-          <li>0868 824 090: anh Hoá Kỳ Co</li>
-          <li>0945 244 771: Cứu hộ khu chợ Dinh</li>
-          <li>0914 159 157: anh Tuấn khu vực Tuy Phước</li>
-          <li>0914 123 203: anh Đây khu vực Tuy Phước</li>
-          <li>0855 505 552: Đội anh Quyết Quảng Ngãi</li>
-          <li>0983 422 222: anh Lượng (fb Lượng Vũ)</li>
-          <li>0935 093 545: Quang UD</li>
-          <li>0918 390 252: Đại Big Event</li>
+          <li>Cảnh sát PCCC: <a href="tel:114"><b>114</b></a></li>
+          <li><a href="tel:0914907576">0914 907 576</a>: Cano khu vực Long Vân - Hùng Vương</li>
+          <li><a href="tel:0867772726">086 777 2726</a>: anh Tâm Kỳ Co</li>
+          <li><a href="tel:0345661088">0345 661 088</a>: anh Hiệp HDV</li>
+          <li><a href="tel:0387234577">0387 234 577</a>: anh Đảo Nhơn Lý</li>
+          <li><a href="tel:0868824090">0868 824 090</a>: anh Hoá Kỳ Co</li>
+          <li><a href="tel:0945244771">0945 244 771</a>: Cứu hộ khu chợ Dinh</li>
+          <li><a href="tel:0914159157">0914 159 157</a>: anh Tuấn khu vực Tuy Phước</li>
+          <li><a href="tel:0914123203">0914 123 203</a>: anh Đây khu vực Tuy Phước</li>
+          <li><a href="tel:0855505552">0855 505 552</a>: Đội anh Quyết Quảng Ngãi</li>
+          <li><a href="tel:0983422222">0983 422 222</a>: anh Lượng (fb Lượng Vũ)</li>
+          <li><a href="tel:0935093545">0935 093 545</a>: Quang UD</li>
+          <li><a href="tel:0918390252">0918 390 252</a>: Đại Big Event</li>
         </ul>
       </div>
       <!-- Thêm các tỉnh khác tương tự nếu cần -->
