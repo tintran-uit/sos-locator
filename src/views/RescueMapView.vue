@@ -4,7 +4,7 @@
     <div ref="mapEl" class="map"></div>
     <div class="list">
       <button class="refresh" @click="loadVictimsOnce" :disabled="loading">{{ loading ? 'Đang tải...' : 'Tải lại' }}</button>
-      <p><b>Đã hỗ trợ: {{ victims.filter(v => v.status === 1).length }}</b></p>
+      <p><b>Đã hỗ trợ: {{ supportedVictims.length }}</b></p>
       <!-- <ul>
         <li v-for="v in victims.filter(v => v.status === 1)" :key="v.id">
           {{ v.name }} ({{ v.phone }}) - {{ formatLoc(v.location) }}
@@ -28,12 +28,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
 import { Loader } from '@googlemaps/js-api-loader';
 import { collection, getDocs, query, orderBy, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../services/firebase';
 
 const victims = ref([]);
+const supportedVictims = computed(() => Array.isArray(victims.value) ? victims.value.filter(v => v.status === 1) : []);
 const loading = ref(false);
 const error = ref('');
 const mapEl = ref(null);
@@ -103,8 +104,7 @@ async function loadVictimsOnce() {
     const q = query(collection(db, 'victims'), orderBy('createdAt', 'desc'));
     const snap = await getDocs(q);
     victims.value = snap.docs
-      .map(d => ({ id: d.id, ...d.data() }))
-      .filter(v => v.status !== 1 && v.status !== 0); // chỉ show status khác 1 và 0
+      .map(d => ({ id: d.id, ...d.data() })); 
   } catch (e) {
     error.value = e.message || 'Không tải được dữ liệu';
   } finally {
