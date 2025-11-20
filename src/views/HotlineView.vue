@@ -31,6 +31,25 @@
           <li>Đ/c Nguyễn Chí Thi (CAP Tuy Hòa): <a href="tel:0903570838">0903 570 838</a></li>
         </ul>
       </div>
+      <div class="province">
+        <h3>Khánh Hòa</h3>
+        <ul>
+          <li><b>1. ĐẦU MỐI CHÍNH (ƯU TIÊN GỌI)</b></li>
+          <li>• <a href="tel:0905151131">0905 151 131</a> – anh Đạo, Cán bộ P. Tây Nha Trang</li>
+          <li>• <a href="tel:0967993996">0967 993 996</a> – anh Trường, Đội cứu hộ</li>
+          <li style="margin-top:0.5em"><b>2. CANO / THUYỀN PHAO HỖ TRỢ (NHIỀU SỐ KHÁC NHAU)</b></li>
+          <li>• <a href="tel:0915421218">0915 421 218</a> – Lái cano, thuyền phao hỗ trợ miễn phí</li>
+          <li>• <a href="tel:0962818174">0962 818 174</a> – Anh Khải, cano</li>
+          <li>• <a href="tel:0971140115">0971 140 115</a> – Chị Kim Anh, cano</li>
+          <li style="margin-top:0.5em"><b>3. CỨU HỘ – CHÍNH QUYỀN KHU VỰC TÂY NHA TRANG</b></li>
+          <li>• <a href="tel:0898393039">0898 393 039</a> – Anh Thuận, Ủy ban Tây Nha Trang</li>
+          <li>• <a href="tel:0905243263">0905 243 263</a> – Anh Tuyên, Chỉ huy trưởng Tây Nha Trang</li>
+          <li>• <a href="tel:0905112888">0905 112 888</a> – Anh Đạt (Vĩnh Hiệp)</li>
+          <li style="margin-top:0.5em"><b>4. ĐẦU MỐI KHÁC</b></li>
+          <li>• <a href="tel:0836882269">0836 882 269</a> – Bé Nguyên</li>
+          <li>• <a href="tel:0972800044">0972 800 044</a> – Anh Hiệp, đội cứu hộ PCTT</li>
+        </ul>
+      </div>
       <!-- Thêm các tỉnh khác tương tự nếu cần -->
     </div>
     <p class="note">* Gọi 114 để gặp cứu hộ cứu nạn toàn quốc. Gọi 115 để gặp cấp cứu y tế.</p>
