@@ -11,17 +11,17 @@
         </li>
         <li v-if="!victims.some(v => v.status === 1)" class="empty">Chưa có ai được hỗ trợ.</li>
       </ul> -->
-  <h3 class="highlight-red">Danh sách tín hiệu chưa được hỗ trợ:({{ victims.filter(v => v.status !== 1).length }})</h3>
+  <h3 class="highlight-red">Danh sách tín hiệu chưa được hỗ trợ:({{ unsupportedVictims.length }})</h3>
       <p v-if="loading">Đang tải dữ liệu...</p>
       <p v-else-if="error" class="error">Lỗi: {{ error }}</p>
       <ul v-else>
-        <li v-for="v in victims.filter(v => v.status !== 1)" :key="v.id">
+        <li v-for="v in unsupportedVictims" :key="v.id">
           {{ v.name }}
           (<a :href="'tel:' + v.phone.replace(/[^0-9+]/g, '')" style="color:#006494; text-decoration:underline">{{ v.phone }}</a>)
           - {{ formatLoc(v.location) }}
           <span v-if="v.address">- {{ v.address }}</span>
         </li>
-        <li v-if="!victims.some(v => v.status !== 1)" class="empty">Chưa có tín hiệu nào.</li>
+        <li v-if="!unsupportedVictims.length" class="empty">Chưa có tín hiệu nào.</li>
       </ul>
     </div>
   </section>
@@ -35,6 +35,7 @@ import { db } from '../services/firebase';
 
 const victims = ref([]);
 const supportedVictims = computed(() => Array.isArray(victims.value) ? victims.value.filter(v => v.status === 1) : []);
+const unsupportedVictims = computed(() => Array.isArray(victims.value) ? victims.value.filter(v => v.status !== 1 && v.status !== 0) : []);
 const loading = ref(false);
 const error = ref('');
 const mapEl = ref(null);
@@ -59,7 +60,7 @@ function renderMarkers() {
     scaledSize: new google.maps.Size(38, 38),
     anchor: new google.maps.Point(19, 38)
   };
-  victims.value.forEach(v => {
+  unsupportedVictims.value.forEach(v => {
     if (!v.location || typeof v.location.lat !== 'number' || typeof v.location.lng !== 'number') return;
     const marker = new google.maps.Marker({ 
       position: v.location, 
