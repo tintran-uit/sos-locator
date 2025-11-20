@@ -20,6 +20,17 @@
           <li><a href="tel:0918390252">0918 390 252</a>: Đại Big Event</li>
         </ul>
       </div>
+      <div class="province">
+        <h3>Đắk Lắk - Phú Yên (cũ)</h3>
+        <ul>
+          <li>Đ/c Nguyễn Thị Anh Hoa (CAP Bình Kiến): <a href="tel:0901927199">0901 927 199</a>, <a href="tel:0941131177">0941 131 177</a></li>
+          <li>Đ/c Đỗ Quốc Đại (CAP Đông Hòa): <a href="tel:0976975949">0976 975 949</a>, <a href="tel:0369074407">0369 074 407</a></li>
+          <li>Đ/c Nguyễn Ngọc Văn (CAP Hòa Hiệp): <a href="tel:0913880034">0913 880 034</a></li>
+          <li>Đ/c Đỗ Ngọc Quý (CAP Phú Yên): <a href="tel:0592955667">0592 955 667</a></li>
+          <li>Đ/c Ngô Thị Hồng Thắm (CAP Sông Cầu): <a href="tel:0903936079">0903 936 079</a></li>
+          <li>Đ/c Nguyễn Chí Thi (CAP Tuy Hòa): <a href="tel:0903570838">0903 570 838</a></li>
+        </ul>
+      </div>
       <!-- Thêm các tỉnh khác tương tự nếu cần -->
     </div>
     <p class="note">* Gọi 114 để gặp cứu hộ cứu nạn toàn quốc. Gọi 115 để gặp cấp cứu y tế.</p>
