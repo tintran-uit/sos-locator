@@ -3,7 +3,7 @@
     <h2>Gửi vị trí cứu nạn</h2>
     <form @submit.prevent="handleSubmit" class="form">
       <label>Tên hoặc thông tin liên lạc
-        <input v-model="name" required placeholder="Ví dụ: Sang - Thôn Bình Lâm, Tuy Phước" />
+        <input v-model="name" required placeholder="Ví dụ: 2 người lớn tuổi - Thôn Bình Lâm, Tuy Phước" />
       </label>
       <label>Số điện thoại
         <input v-model="phone" required pattern="[0-9+ ]{6,}" placeholder="090..." />
