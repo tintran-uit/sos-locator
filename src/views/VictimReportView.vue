@@ -2,8 +2,8 @@
   <section class="report">
     <h2>Gửi vị trí cứu nạn</h2>
     <form @submit.prevent="handleSubmit" class="form">
-      <label>Họ tên
-        <input v-model="name" required placeholder="Ví dụ: Nguyễn Văn A" />
+      <label>Tên hoặc thông tin liên lạc
+        <input v-model="name" required placeholder="Ví dụ: Sang - Thôn Bình Lâm, Tuy Phước" />
       </label>
       <label>Số điện thoại
         <input v-model="phone" required pattern="[0-9+ ]{6,}" placeholder="090..." />
